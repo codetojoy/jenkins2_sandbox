@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ENV=$1
+BUILD_NUMBER=$2
 
 echo "------------------------"
-echo "staging for $1"
+echo "staging build # $BUILD_NUMBER for $ENV"
 echo "------------------------"
 
