@@ -15,12 +15,13 @@ node {
 // -------------------------- DEV (auto-deploy)
 stage "auto-deploy for DEV"
 node {
+    env.WORKSPACE = pwd() // See https://issues.jenkins-ci.org/browse/JENKINS-33511
     def ENV = "DEV"
-    // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
-    env.WORKSPACE = pwd()
+    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
-    sh "${env.WORKSPACE}/resources/stage.sh ${ENV} ${env.BUILD_NUMBER}"
-    sh "${env.WORKSPACE}/resources/deploy.sh ${ENV} ${env.BUILD_NUMBER}"
+    sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
+    sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
 
 // -------------------------- QA
@@ -30,11 +31,13 @@ timeout(time:2, unit:'DAYS') {
 }
 
 node {
-    def ENV = "QA"
     env.WORKSPACE = pwd()
+    def ENV = "QA"
+    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
-    sh "${env.WORKSPACE}/resources/stage.sh ${ENV} ${env.BUILD_NUMBER}"
-    sh "${env.WORKSPACE}/resources/deploy.sh ${ENV} ${env.BUILD_NUMBER}"
+    sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
+    sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
 
 // -------------------------- UAT 
@@ -44,9 +47,11 @@ timeout(time:2, unit:'DAYS') {
 }
 
 node {
-    def ENV = "UAT"
     env.WORKSPACE = pwd()
+    def ENV = "UAT"
+    def SRC_DIR = "${env.WORKSPACE}/build/libs" 
+    def DEST_DIR = "${env.WORKSPACE}/../../userContent/share"
 
-    sh "${env.WORKSPACE}/resources/stage.sh ${ENV} ${env.BUILD_NUMBER}"
-    sh "${env.WORKSPACE}/resources/deploy.sh ${ENV} ${env.BUILD_NUMBER}"
+    sh "${env.WORKSPACE}/resources/stage.sh $ENV ${env.BUILD_NUMBER} $SRC_DIR $DEST_DIR"
+    sh "${env.WORKSPACE}/resources/deploy.sh $ENV ${env.BUILD_NUMBER}"
 }
