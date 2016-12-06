@@ -17,14 +17,24 @@ node {
     // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
     env.WORKSPACE = pwd()
 
-    def workspace = env.WORKSPACE
-    sh "echo TRACER " + workspace
+    sh "${env.WORKSPACE}/resources/stage.sh DEV"
+    sh "${env.WORKSPACE}/resources/deploy.sh DEV"
 }
 
-/*
 stage "deploy to QA"
-sh "echo TRACER QA"
+node {
+    // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
+    env.WORKSPACE = pwd()
+
+    sh "${env.WORKSPACE}/resources/stage.sh QA"
+    sh "${env.WORKSPACE}/resources/deploy.sh QA"
+}
 
 stage "deploy to UAT"
-sh "echo TRACER UAT"
-*/
+node {
+    // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
+    env.WORKSPACE = pwd()
+
+    sh "${env.WORKSPACE}/resources/stage.sh UAT"
+    sh "${env.WORKSPACE}/resources/deploy.sh UAT"
+}
