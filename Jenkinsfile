@@ -14,6 +14,9 @@ node {
 
 stage "auto-deploy for DEV"
 node {
+    // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
+    env.WORKSPACE = pwd()
+
     def workspace = env.WORKSPACE
     sh "echo TRACER " + workspace
 }
