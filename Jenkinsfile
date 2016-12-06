@@ -14,7 +14,8 @@ node {
 
 stage "auto-deploy for DEV"
 node {
-    sh "echo TRACER ${WORKSPACE}"
+    def workspace = env.WORKSPACE
+    sh "echo TRACER " + workspace
 }
 
 /*
