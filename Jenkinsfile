@@ -12,6 +12,7 @@ node {
     sh "${gradleHome}/bin/gradle clean test war"
 }
 
+// -------------------------- DEV (auto-deploy)
 stage "auto-deploy for DEV"
 node {
     def ENV = "DEV"
@@ -22,11 +23,12 @@ node {
     sh "${env.WORKSPACE}/resources/deploy.sh ${ENV} ${env.BUILD_NUMBER}"
 }
 
+// -------------------------- QA
+stage "deploy to QA"
 timeout(time:2, unit:'DAYS') {
     input message:'Approve deployment to QA?'
 }
 
-stage "deploy to QA"
 node {
     def ENV = "QA"
     env.WORKSPACE = pwd()
@@ -35,11 +37,12 @@ node {
     sh "${env.WORKSPACE}/resources/deploy.sh ${ENV} ${env.BUILD_NUMBER}"
 }
 
+// -------------------------- UAT 
+stage "deploy to UAT"
 timeout(time:2, unit:'DAYS') {
     input message:'Approve deployment to UAT?'
 }
 
-stage "deploy to UAT"
 node {
     def ENV = "UAT"
     env.WORKSPACE = pwd()
