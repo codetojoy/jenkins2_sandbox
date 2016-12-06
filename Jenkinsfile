@@ -13,7 +13,7 @@ node {
 }
 
 stage "auto-deploy for DEV"
-sh "echo ${WORKSPACE}"
+sh "echo ${env.WORKSPACE}"
 
 /*
 
