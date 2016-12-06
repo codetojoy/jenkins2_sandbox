@@ -17,7 +17,7 @@ node {
     // this is a work-around. See https://issues.jenkins-ci.org/browse/JENKINS-33511
     env.WORKSPACE = pwd()
 
-    sh "${env.WORKSPACE}/resources/stage.sh DEV"
+    sh "${env.WORKSPACE}/resources/stage.sh DEV for build # ${env.BUILD_NUMBER}"
     sh "${env.WORKSPACE}/resources/deploy.sh DEV"
 }
 
