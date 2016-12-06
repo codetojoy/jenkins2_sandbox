@@ -13,11 +13,14 @@ node {
 }
 
 stage "auto-deploy for DEV"
-sh "echo ${env.WORKSPACE}"
+node {
+    sh "echo TRACER ${env.WORKSPACE}"
+}
 
 /*
+stage "deploy to QA"
+sh "echo TRACER QA"
 
-    stage "deploy to QA"
-
-    stage "deploy to UAT"
+stage "deploy to UAT"
+sh "echo TRACER UAT"
 */
