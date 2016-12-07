@@ -15,6 +15,7 @@ mkdir -p $DEST_DIR
 cp $SRC_DIR/greeting.war $DEST_DIR
 
 if [ "$ENV" == "DEV" ]; then
-    cp $SRC_DIR/greeting.war $DEST_ROOT/../servers/tomcat_DEV/data
+    mkdir -p $DEST_ROOT/../servers/tomcat_DEV/data
+    cp $SRC_DIR/greeting.war $DEST_ROOT/../servers/tomcat_DEV/data/greeting.war
 fi
 
