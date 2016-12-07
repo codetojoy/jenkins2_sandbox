@@ -6,20 +6,23 @@ import java.util.*;
 // silly class to use as an illustration
 
 public class Greeter {
-    public static final String VERSION = "0.9";
+    private final static String HELLO = "hello";
+    private final static String GREETINGS_BUNDLE = "greetings";
 
-    protected static final String HELLO = "Hello";
-    protected static final String NICE_DAY = "Nice day, eh?";
-    protected static final String CA_VA = "Ça va ?";
-    
-    public String greet(Locale locale) {
-        String result = HELLO;
+    protected Locale getLocale(String lang) {
+        Locale result = Locale.ENGLISH;
 
-        if (Locale.CANADA.equals(locale)) {
-            result = NICE_DAY;
-        } else if (Locale.CANADA_FRENCH.equals(locale)) {
-            result = CA_VA;
+        if ((lang != null) && (! lang.trim().isEmpty())) {
+            result = new Locale(lang);
         }
+
+        return result;
+    }
+
+    public String greet(String lang) {
+        Locale locale = getLocale(lang);
+        ResourceBundle greetings = ResourceBundle.getBundle(GREETINGS_BUNDLE, locale); 
+        String result = greetings.getString(HELLO);
 
         return result;
     }
