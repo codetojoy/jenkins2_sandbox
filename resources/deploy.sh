@@ -7,6 +7,9 @@ echo "------------------------"
 echo "deploying war (build # $BUILD_NUMBER) to $ENV"
 echo "------------------------"
 
+PASS=bogus
+PORT=5150
+
 if [ "$ENV" == "DEV" ]; then
     PASS=devdevdev
     PORT=5555
