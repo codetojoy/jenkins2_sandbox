@@ -19,3 +19,13 @@ if [ "$ENV" == "DEV" ]; then
     cp $SRC_DIR/greeting.war $DEST_ROOT/../servers/tomcat_DEV/greeting.war
 fi
 
+if [ "$ENV" == "QA" ]; then
+    mkdir -p $DEST_ROOT/../servers/tomcat_QA
+    cp $SRC_DIR/greeting.war $DEST_ROOT/../servers/tomcat_QA/greeting.war
+fi
+
+if [ "$ENV" == "UAT" ]; then
+    mkdir -p $DEST_ROOT/../servers/tomcat_UAT
+    cp $SRC_DIR/greeting.war $DEST_ROOT/../servers/tomcat_UAT/greeting.war
+fi
+

@@ -1,5 +1,5 @@
 
-### Docker setup
+### Docker Jenkins setup
 
 * instructions [here](https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+with+Docker)
 * `docker pull jenkins`
@@ -13,6 +13,12 @@
 
 docker stop [containerId]
 
-### Jenkins setup
+### Docker Tomcat setup prerequisites
 
-* TBD
+* `docker pull tomcat`
+* confirm with `docker images`
+* in Docker terminal: `echo $DOCKER_HOST` (e.g. tcp://192.168.99.100:2376)
+
+### Docker Tomcat setup for DEV, QA, UAT
+
+* edit `~/resources/tomcat/build_servers.sh`
