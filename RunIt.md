@@ -22,3 +22,10 @@ docker stop [containerId]
 ### Docker Tomcat setup for DEV, QA, UAT
 
 * edit `~/resources/tomcat/build_servers.sh`
+
+### Architecture
+
+* Jenkins copies (or *stages*) the WAR file to `~/jenkins/userContent/serversr`'
+* e.g. for DEV it is copied to `~/jenkins/userContent/servers/tomcat_DEV`
+* each Tomcat container maps `/data` to be the appropriate staging directory
+* a *deploy* is simply a command-line script to use `/data/greeting.war`
