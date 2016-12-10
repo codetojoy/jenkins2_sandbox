@@ -25,7 +25,7 @@ if [ "$ENV" == "UAT" ]; then
     PORT=5577
 fi 
 
-curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/stop?path=/greeting'
-curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/undeploy?path=/greeting'
-curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/deploy?path=/greeting&war=file:/data/greeting.war'
+curl --user admin:$PASS 'http://192.168.99.100:'"${PORT}"'/manager/text/stop?path=/greeting'
+curl --user admin:$PASS 'http://192.168.99.100:'"${PORT}"'/manager/text/undeploy?path=/greeting'
+curl --user admin:$PASS 'http://192.168.99.100:'"${PORT}"'/manager/text/deploy?path=/greeting&war=file:/data/greeting.war'
 
