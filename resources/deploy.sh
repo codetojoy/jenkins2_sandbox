@@ -8,7 +8,21 @@ echo "deploying war (build # $BUILD_NUMBER) to $ENV"
 echo "------------------------"
 
 if [ "$ENV" == "DEV" ]; then
-    curl --user admin:devdevdev 'http://192.168.99.100:5555/manager/text/stop?path=/greeting'
-    curl --user admin:devdevdev 'http://192.168.99.100:5555/manager/text/undeploy?path=/greeting'
-    curl --user admin:devdevdev 'http://192.168.99.100:5555/manager/text/deploy?path=/greeting&war=file:/data/greeting.war'
+    PASS=devdevdev
+    PORT=5555
 fi 
+
+if [ "$ENV" == "QA" ]; then
+    PASS=qaqaqa
+    PORT=5566
+fi 
+
+if [ "$ENV" == "UAT" ]; then
+    PASS=uatuatuat
+    PORT=5577
+fi 
+
+curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/stop?path=/greeting'
+curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/undeploy?path=/greeting'
+curl --user admin:$PASS 'http://192.168.99.100:${PORT}/manager/text/deploy?path=/greeting&war=file:/data/greeting.war'
+
