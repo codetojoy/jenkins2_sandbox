@@ -4,4 +4,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
+<Context>
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+           allow="127\.\d+\.\d+\.\d+"/>
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+           allow="192\.168\.\d+\.\d+"/>
+</Context>
+
 </web-app>
