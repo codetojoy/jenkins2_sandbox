@@ -9,7 +9,7 @@ node {
 stage "build"
 node {
     def gradleHome = tool "G31"
-    sh "${gradleHome}/bin/gradle clean test war"
+    sh "${gradleHome}/bin/gradle clean test war -PBUILD_NUMBER=${env.BUILD_NUMBER}"
 }
 
 // -------------------------- DEV (auto-deploy)
