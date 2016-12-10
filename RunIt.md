@@ -26,6 +26,7 @@ docker stop [containerId]
 ### Architecture
 
 * Jenkins copies (or *stages*) the WAR file to `~/jenkins/userContent/servers`
-* e.g. for DEV it is copied to `~/jenkins/userContent/servers/tomcat_DEV`
+    * e.g. for DEV it is copied to `~/jenkins/userContent/servers/tomcat_DEV`
 * each Tomcat container maps `/data` to be the appropriate staging directory
+    * e.g. `/data` on Tomcat QA is `~/jenkins/userContent/servers/tomcat_QA`
 * a *deploy* is simply a command-line script to use `/data/greeting.war`
