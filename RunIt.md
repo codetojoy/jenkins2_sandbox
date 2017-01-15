@@ -30,3 +30,11 @@ docker stop [containerId]
 * each Tomcat container maps `/data` to be the appropriate staging directory
     * e.g. `/data` on Tomcat QA is `~/jenkins/userContent/servers/tomcat_QA`
 * a *deploy* is simply a command-line script to use `/data/greeting.war`
+
+### URLs
+
+* assuming that `$DOCKER_HOST` is `192.168.99.100`
+* Jenkins: `http://192.168.99.100:5155`
+* DEV: `http://192.168.99.100:5566/greeting`
+* QA: `http://192.168.99.100:5577/greeting`
+* UAT: `http://192.168.99.100:5588/greeting`
